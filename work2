@@ -1,0 +1,32 @@
+Создать два произвольных файла. 
+    rendom@geek-VB:~$ touch file1 file2
+Первому присвоить права на чтение и запись для владельца и группы, только на чтение — для всех. 
+    rendom@geek-VB:~$ chmod 664 file1
+Второму присвоить права на чтение и запись только для владельца. 
+Сделать это в численном и символьном виде.
+    rendom@geek-VB:~$ sudo chmod u=rw,g-rw,o-rw file2
+
+Управление пользователями:
+* создать пользователя, используя утилиту useradd и adduser;
+    rendom@geek-VB:~$ sudo useradd -s bin/bash -m -d /home/testuser testuser
+    rendom@geek-VB:~$ sudo adduser newuser
+Назначить новых владельца и группу для директории целиком.
+    rendom@geek-VB:~$ mkdir testdir
+    rendom@geek-VB:~$ chown newuser:developers testdir    
+ * удалить пользователя, используя утилиту userdel.
+    rendom@geek-VB:~$ sudo userdel testuser
+
+Управление группами:
+* создать группу с использованием утилит groupadd и addgroup;
+    rendom@geek-VB:~$ sudo groupadd developers
+    rendom@geek-VB:~$ sudo addgroup devops
+
+* попрактиковаться в смене групп у пользователей;
+    rendom@geek-VB:~$ sudo usermod -ag devops newuser
+* добавить пользователя в группу, не меняя основной;
+    rendom@geek-VB:~$ sudo usermod -aG developers testuser
+Создать пользователя с правами суперпользователя. 
+    rendom@geek-VB:~$ sudo usermod -aG sudo testuser
+Сделать так, чтобы sudo не требовал пароль для выполнения команд.
+    rendom@geek-VB:~$ sudo visudo
+        %devops ALL=(ALL:ALL) NOPASSWD:ALL     
