@@ -10,7 +10,6 @@ do
     if [ -e $file ] 
     then
         owner=`ls -l $file | awk {'print $3'}`
-	echo "$owner"
 	mkdir -p $pathdir/$owner
 	cp $file $pathdir/$owner
 	chown $owner $pathdir/$owner/$file
